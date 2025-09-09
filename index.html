@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Hub - Acesso às Principais IAs Gratuitas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: 2px solid #e2e8f0;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        .search-bar i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 25px 25px 15px;
+            text-align: center;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .card-body {
+            padding: 15px 25px 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .features {
+            list-style: none;
+            margin: 15px 0;
+            flex-grow: 1;
+        }
+
+        .features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .features li::before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px 20px;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card:nth-child(1) .card-icon { color: #8b5cf6; }
+        .card:nth-child(2) .card-icon { color: #0ea5e9; }
+        .card:nth-child(3) .card-icon { color: #ec4899; }
+        .card:nth-child(4) .card-icon { color: #10b981; } /* Nova cor para ChatGPT */
+        .card:nth-child(5) .card-icon { color: #f97316; }
+        .card:nth-child(6) .card-icon { color: #3b82f6; }
+        .card:nth-child(7) .card-icon { color: #10b981; }
+        .card:nth-child(8) .card-icon { color: #8b5cf6; }
+        .card:nth-child(9) .card-icon { color: #06b6d4; }
+        .card:nth-child(10) .card-icon { color: #f59e0b; }
+
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            header {
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+            </div>
+            <h1>IA Hub - Acesso às Principais IAs Gratuitas</h1>
+            <p class="subtitle">Explore e utilize as mais poderosas inteligências artificiais gratuitas disponíveis no mercado. Todas em um só lugar, acessíveis de forma simples e rápida.</p>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar inteligência artificial...">
+                <i class="fas fa-search"></i>
+            </div>
+        </header>
+
+        <main>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h2 class="card-title">Claude</h2>
+                        <p class="card-description">Assistente de IA avançado da Anthropic com excelentes capacidades de raciocínio</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Processamento de texto avançado</li>
+                            <li>Respostas detalhadas e contextualizadas</li>
+                            <li>Suporte a documentos longos</li>
+                        </ul>
+                        <a href="https://claude.ai" class="btn" target="_blank">Acessar Claude</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h2 class="card-title">DeepSeek</h2>
+                        <p class="card-description">Modelo de linguagem de código aberto com forte foco em programação</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Especialista em programação</li>
+                            <li>Código em múltiplas linguagens</li>
+                            <li>Modelo de código aberto</li>
+                        </ul>
+                        <a href="https://www.deepseek.com" class="btn" target="_blank">Acessar DeepSeek</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h2 class="card-title">Gemini</h2>
+                        <p class="card-description">IA multimodal do Google com capacidades avançadas de processamento</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Processamento multimodal</li>
+                            <li>Integração com Google</li>
+                            <li>Capacidades avançadas de raciocínio</li>
+                        </ul>
+                        <a href="https://gemini.google.com" class="btn" target="_blank">Acessar Gemini</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h2 class="card-title">ChatGPT</h2>
+                        <p class="card-description">Modelo de linguagem da OpenAI, popular por sua versatilidade e capacidade de conversação.</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Conversação natural e criativa</li>
+                            <li>Geração de textos e códigos</li>
+                            <li>Ampla base de conhecimento</li>
+                        </ul>
+                        <a href="https://chat.openai.com" class="btn" target="_blank">Acessar ChatGPT</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <h2 class="card-title">Kimi</h2>
+                        <p class="card-description">Assistente de IA da Moonshot AI com capacidades de processamento de longos contextos</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Processamento de longos textos</li>
+                            <li>Pesquisa na web integrada</li>
+                            <li>Análise de documentos</li>
+                        </ul>
+                        <a href="https://www.kimi.com/" class="btn" target="_blank">Acessar Kimi</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fab fa-microsoft"></i>
+                        </div>
+                        <h2 class="card-title">Microsoft Copilot</h2>
+                        <p class="card-description">Assistente de IA da Microsoft integrado ao ecossistema Office</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Integração com Office 365</li>
+                            <li>Assistente para produtividade</li>
+                            <li>Uso empresarial seguro</li>
+                        </ul>
+                        <a href="https://copilot.microsoft.com" class="btn" target="_blank">Acessar Copilot</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h2 class="card-title">NotebookLM</h2>
+                        <p class="card-description">Ferramenta de IA do Google para pesquisa e organização de conhecimento</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Organização de pesquisas</li>
+                            <li>Análise de documentos</li>
+                            <li>Geração de resumos</li>
+                        </ul>
+                        <a href="https://notebooklm.google.com" class="btn" target="_blank">Acessar NotebookLM</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h2 class="card-title">Perplexity</h2>
+                        <p class="card-description">Motor de busca baseado em IA que fornece respostas diretas e citadas</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Respostas com fontes citadas</li>
+                            <li>Pesquisa em tempo real</li>
+                            <li>Múltiplos modelos de IA</li>
+                        </ul>
+                        <a href="https://www.perplexity.ai" class="btn" target="_blank">Acessar Perplexity</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h2 class="card-title">Qwen</h2>
+                        <p class="card-description">Modelo de linguagem de grande escala da Alibaba com múltiplas capacidades</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Múltiplos idiomas suportados</li>
+                            <li>Geração de código</li>
+                            <li>Processamento multimodal</li>
+                        </ul>
+                        <a href="https://tongyi.aliyun.com/qianwen" class="btn" target="_blank">Acessar Qwen</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h2 class="card-title">Z.ai</h2>
+                        <p class="card-description">Assistente de IA especializado em conversas naturais e contextuais</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="features">
+                            <li>Conversas naturais</li>
+                            <li>Mantém contexto em diálogos</li>
+                            <li>Personalização avançada</li>
+                        </ul>
+                        <a href="https://z.ai" class="btn" target="_blank">Acessar Z.ai</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 - Sérgio - IA Hub - Acesse as melhores IAs gratuitas em um só lugar</p>
+        </footer>
+    </div>
+
+    <script>
+        // Funcionalidade de busca
+        document.querySelector('.search-bar input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').textContent.toLowerCase();
+                const description = card.querySelector('.card-description').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Efeito de animação para os cards
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+            card.style.animation = `fadeIn 0.5s ease ${index * 0.1}s both`;
+        });
+    </script>
+</body>
+</html>
